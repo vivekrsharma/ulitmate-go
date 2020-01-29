@@ -1,4 +1,4 @@
-package main
+package chapter3
 
 const (
 	rows int = 2 * 1024
