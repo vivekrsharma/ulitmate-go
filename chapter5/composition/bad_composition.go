@@ -1,7 +1,9 @@
-package main
+package composition
 
 import "fmt"
 
+
+//
 type Animal struct {
 		Name string
 		IsMammmal bool
