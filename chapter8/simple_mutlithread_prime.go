@@ -1,4 +1,4 @@
-package main
+package chapter8
 
 import (
 	"fmt"
@@ -26,7 +26,6 @@ func init() {
 }
 
 func main() {
-	fmt.Println("Hello World!")
 	var wg sync.WaitGroup
 	wg.Add(2)
 
