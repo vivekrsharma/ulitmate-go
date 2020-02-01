@@ -1,4 +1,4 @@
-package main
+package advanced
 
 import (
 	"errors"
@@ -40,22 +40,14 @@ func ( p *Pillar) Store(d *Data) error {
 	return nil
 }
 
+// Puller is the interface for source system.
 type Puller interface {
 	Pull(d *Data) error
 }
 
+// Storer is the interface for the destination system.
 type Storer interface {
 	Store(d *Data) error
-}
-
-type PullStorer interface {
-	Puller
-	Storer
-}
-
-type System struct  {
-	Puller
-	Storer
 }
 
 func pull(x Puller, data []Data) (int, error) {
@@ -76,11 +68,11 @@ func store(s Storer, data[]Data) (int, error) {
 	return len(data), nil
 }
 
-func Copy(s PullStorer, batch int) error {
+func Copy(p Puller, s Storer, batch int) error {
 	data := make([]Data, batch)
 	for {
 
-		i,err := pull(s, data)
+		i,err := pull(p, data)
 		if i > 0 {
 			i, err = store(s,data[:i])
 		}
@@ -93,18 +85,17 @@ func Copy(s PullStorer, batch int) error {
 
 func main() {
 
-	s := System{
-		Puller: &Xenia{
-			Host:    "localhost:8080",
-			Timeout: time.Second,
-		},
-		Storer: &Pillar{
-			Host:    "locahost:9090",
-			Timeout: time.Second,
-		},
+	x := Xenia{
+		Host:    "localhost:8080",
+		Timeout: time.Second,
 	}
-	
-	if err := Copy(&s, 3); err != io.EOF {
+	p := Pillar{
+		Host:    "locahost:9090",
+		Timeout: time.Second,
+	}
+
+
+	if err :=Copy(&x , &p, 3	); err != io.EOF {
 		fmt.Printf("Ran into errors %s", err)
 		return
 	}
