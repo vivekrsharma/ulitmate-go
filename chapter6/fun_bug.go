@@ -10,6 +10,7 @@ func (e *errorMessage) Error() string {
 	return e.message
 }
 
+// New creates a new errorMessage.
 func New() error {
 	return &errorMessage{"Find the bug"}
 }
