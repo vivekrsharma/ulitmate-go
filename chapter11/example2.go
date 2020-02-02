@@ -9,7 +9,7 @@ import (
 
 func makeHttpRequest() {
 
-	ctx,cancel := context.WithTimeout(context.Background(),150 * time.Millisecond)
+	ctx, cancel := context.WithTimeout(context.Background(), 150*time.Millisecond)
 	defer cancel()
 
 	ch := make(chan string, 1)
@@ -19,8 +19,8 @@ func makeHttpRequest() {
 		DisableCompression: true,
 	}
 	client := &http.Client{Transport: tr}
-	req,err := http.NewRequest("GET","https://www.google.com",nil)
-	if err!=nil {
+	req, err := http.NewRequest("GET", "https://www.google.com", nil)
+	if err != nil {
 		panic(err)
 		return
 	}
@@ -36,12 +36,12 @@ func makeHttpRequest() {
 	}()
 
 	select {
-		case p:= <-ch:
-			fmt.Printf("Client http call succeeded. Response %s",p)
-		case td := <-ctx.Done():
-			fmt.Printf("Client reqeust timeout. Details %s",td)
-			tr.CancelRequest(req)
-			fmt.Printf("%s",<-ch)
+	case p := <-ch:
+		fmt.Printf("Client http call succeeded. Response %s", p)
+	case td := <-ctx.Done():
+		fmt.Printf("Client reqeust timeout. Details %s", td)
+		tr.CancelRequest(req)
+		fmt.Printf("%s", <-ch)
 	}
 
 }

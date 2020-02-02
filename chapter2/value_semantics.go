@@ -8,7 +8,7 @@ func main() {
 	fmt.Println(counter)
 }
 
-func increment (inc int) {
+func increment(inc int) {
 	inc++
 	fmt.Println(inc)
 }

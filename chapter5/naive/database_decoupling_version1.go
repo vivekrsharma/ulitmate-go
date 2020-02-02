@@ -12,18 +12,19 @@ type Data struct {
 	Line string
 }
 
-
 type Xenia struct {
-	Host string
+	Host    string
 	Timeout time.Duration
 }
 
-func ( x *Xenia) Pull(d *Data) error {
+func (x *Xenia) Pull(d *Data) error {
 	// Randomly return some data or error
 
 	switch rand.Intn(100) {
-	case 1, 10, 90: return io.EOF
-	case 5 : return errors.New("data not found ")
+	case 1, 10, 90:
+		return io.EOF
+	case 5:
+		return errors.New("data not found ")
 	default:
 		d.Line = "This is data from Xenia"
 	}
@@ -31,30 +32,30 @@ func ( x *Xenia) Pull(d *Data) error {
 }
 
 type Pillar struct {
-	Host string
+	Host    string
 	Timeout time.Duration
 }
 
-func ( p *Pillar) Store(d *Data) error {
-		fmt.Printf("%s",d.Line)
+func (p *Pillar) Store(d *Data) error {
+	fmt.Printf("%s", d.Line)
 	return nil
 }
 
-type System struct  {
+type System struct {
 	Xenia
 	Pillar
 }
 
 func pull(x *Xenia, data []Data) (int, error) {
 	for i := range data {
-		if err := x.Pull(&data[i]);  err != nil {
+		if err := x.Pull(&data[i]); err != nil {
 			return i, err
 		}
 	}
 	return len(data), nil
 }
 
-func store(p *Pillar, data[]Data) (int, error) {
+func store(p *Pillar, data []Data) (int, error) {
 	for i := range data {
 		if err := p.Store(&data[i]); err != nil {
 			return i, err
@@ -67,9 +68,9 @@ func Copy(s *System, batch int) error {
 	data := make([]Data, batch)
 	for {
 
-		i,err := pull(&s.Xenia, data)
+		i, err := pull(&s.Xenia, data)
 		if i > 0 {
-			 i, err = store(&s.Pillar,data[:i])
+			i, err = store(&s.Pillar, data[:i])
 		}
 
 		if err != nil {
@@ -79,7 +80,7 @@ func Copy(s *System, batch int) error {
 }
 
 func main() {
-	s := System {
+	s := System{
 		Xenia{
 			Host:    "localhost:8080",
 			Timeout: time.Second,

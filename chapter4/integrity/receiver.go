@@ -6,11 +6,11 @@ type notifier interface {
 	notify()
 }
 type user struct {
-	name string
+	name  string
 	email string
 }
 
-func ( u *user) notify() {
+func (u *user) notify() {
 	fmt.Printf(" User has name %s and email %s", u.name, u.email)
 }
 
@@ -19,9 +19,9 @@ func sendNotification(n notifier) {
 }
 
 func main() {
-	u := user {
-		name : "vrs",
-		email : "abc@abc.com",
+	u := user{
+		name:  "vrs",
+		email: "abc@abc.com",
 	}
 	//sendNotification(u)  .. This is a compile error. We cannot send value in a pointer semantics receiver method.
 	// It has following issues -

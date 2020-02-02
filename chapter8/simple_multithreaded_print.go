@@ -11,15 +11,15 @@ func init() {
 }
 
 func lowercase() {
-	for ch :='a'; ch <='z'; ch++ {
-		fmt.Printf("%c",ch)
+	for ch := 'a'; ch <= 'z'; ch++ {
+		fmt.Printf("%c", ch)
 	}
 	fmt.Println("Done")
 }
 
 func uppercase() {
-	for ch :='A'; ch <='Z'; ch++ {
-		fmt.Printf("%c",ch)
+	for ch := 'A'; ch <= 'Z'; ch++ {
+		fmt.Printf("%c", ch)
 	}
 	fmt.Println("Done")
 }
@@ -29,14 +29,14 @@ func main() {
 	wg.Add(2)
 
 	go func() {
-		for i:=0;i<5;i++ {
+		for i := 0; i < 5; i++ {
 			lowercase()
 		}
 		wg.Done()
 	}()
 
 	go func() {
-		for i:=0;i<5;i++ {
+		for i := 0; i < 5; i++ {
 			uppercase()
 		}
 		wg.Done()

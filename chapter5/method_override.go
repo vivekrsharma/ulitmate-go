@@ -3,7 +3,7 @@ package chapter5
 import "fmt"
 
 type user struct {
-	name string
+	name  string
 	email string
 }
 
@@ -12,12 +12,10 @@ func (u *user) String() string {
 }
 
 func main() {
-	u := user {
-		name : "vrs",
-		email : "abc@abc.com",
+	u := user{
+		name:  "vrs",
+		email: "abc@abc.com",
 	}
 	fmt.Println(u)
 	fmt.Println(&u)
 }
-
-

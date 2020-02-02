@@ -14,7 +14,7 @@ func main() {
 		//fmt.Printf("%d %d", i, rl)
 		si := i + rl
 		copy(buf[:], str[i:si])
-		fmt.Printf("%2d: %q; codepoint %#6x; encoded bytes: %#v \n",i, r, r, buf[:rl])
+		fmt.Printf("%2d: %q; codepoint %#6x; encoded bytes: %#v \n", i, r, r, buf[:rl])
 
 	}
 }

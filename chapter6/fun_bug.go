@@ -16,14 +16,14 @@ func New() error {
 }
 
 func returnError() *errorMessage {
-	return  nil
+	return nil
 }
 
 // The function call to the returnError panics in the line below.
 // Can you figure out why? :=)
 func main() {
 	var err error
-	if err = returnError(); err!=nil {
+	if err = returnError(); err != nil {
 		fmt.Println("How is this possible!")
 		panic(err)
 	}

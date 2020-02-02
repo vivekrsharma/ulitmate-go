@@ -7,12 +7,12 @@ import (
 )
 
 func primeNumber(n int, name string) {
-	for i:=1; i<=n;i++ {
+	for i := 1; i <= n; i++ {
 		isPrime := true
-		for j:=2;j<i;j++ {
-			if i %j == 0 {
+		for j := 2; j < i; j++ {
+			if i%j == 0 {
 				isPrime = false
-				break;
+				break
 			}
 		}
 		if isPrime {
@@ -34,7 +34,7 @@ func main() {
 		wg.Done()
 	}()
 
-	go func (){
+	go func() {
 		primeNumber(5000, "B")
 		wg.Done()
 	}()

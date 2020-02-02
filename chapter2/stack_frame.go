@@ -1,15 +1,14 @@
 package main
 
-
 const size = 1024
 
 func main() {
-	s:= "HELLO"
+	s := "HELLO"
 	var a [size]int
-	stackCopy(&s, 0 , a)
+	stackCopy(&s, 0, a)
 }
 
-func stackCopy(s *string , c int , a [size]int) {
+func stackCopy(s *string, c int, a [size]int) {
 	println(c, s, *s)
 	c++
 	if c == 10 {

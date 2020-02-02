@@ -2,14 +2,13 @@ package composition
 
 import "fmt"
 
-
 //
 type Animal struct {
-		Name string
-		IsMammmal bool
+	Name      string
+	IsMammmal bool
 }
 
-func( a *Animal) Speak() {
+func (a *Animal) Speak() {
 	fmt.Printf("My name is %s, it is %t I am a mamalal \n", a.Name, a.IsMammmal)
 }
 

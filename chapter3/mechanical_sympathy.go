@@ -12,12 +12,13 @@ type data struct {
 	v byte
 	n *data
 }
+
 var list *data
 
 func rowWiseTraversal() int {
 	var count int
-	for i:= 0; i< rows;i++ {
-		for j := 0; j< cols; j++ {
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
 			if matrix[i][j] == 0xff {
 				count++
 			}
@@ -41,9 +42,9 @@ func columnWiseTraversal() int {
 
 func linkedListTraversal() int {
 	var count int
-	for itr:= list; itr!=nil; itr = itr.n{
+	for itr := list; itr != nil; itr = itr.n {
 		if itr.v == 0xff {
-		count++
+			count++
 		}
 	}
 	return count
@@ -75,4 +76,3 @@ func init() {
 func main() {
 
 }
-
