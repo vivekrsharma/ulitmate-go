@@ -28,6 +28,7 @@ func TestDownloadTableSubTest(t *testing.T) {
 	{
 		for _, tt := range tests {
 			tf := func(t *testing.T) {
+				t.Parallel()
 				t.Logf("\t Test 0: \t When checking %q for status code %d", tt.url, tt.statusCode)
 				{
 					resp, err := http.Get(tt.url)
