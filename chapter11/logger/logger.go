@@ -11,16 +11,15 @@ type Logger struct {
 	wg sync.WaitGroup
 }
 
-
 func New(w io.Writer, capacity int) *Logger {
 	l := Logger{
-		ch:  make(chan string, capacity),
+		ch: make(chan string, capacity),
 		wg: sync.WaitGroup{},
 	}
 	l.wg.Add(1)
 
 	go func() {
-		for l := range l.ch{
+		for l := range l.ch {
 			fmt.Fprint(w, l)
 		}
 		l.wg.Done()
@@ -34,9 +33,10 @@ func (l *Logger) Close() {
 	l.wg.Wait()
 }
 
-func (l *Logger) Write(line string ) {
+func (l *Logger) Write(line string) {
 	select {
-		case l.ch <- line:
-		default: fmt.Println("line dropped.")
+	case l.ch <- line:
+	default:
+		fmt.Println("line dropped.")
 	}
 }

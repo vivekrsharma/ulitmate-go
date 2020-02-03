@@ -13,7 +13,7 @@ type device struct {
 	problem bool
 }
 
-func (d *device) Write(p []byte) ( n int, err error) {
+func (d *device) Write(p []byte) (n int, err error) {
 	if d.problem {
 		time.Sleep(1 * time.Second)
 	}
@@ -23,13 +23,13 @@ func (d *device) Write(p []byte) ( n int, err error) {
 
 func main() {
 
-	const grps=10
+	const grps = 10
 
 	var d device
-	logger := logger2.New(&d,grps)
+	logger := logger2.New(&d, grps)
 	defer logger.Close()
 
-	for i:=0;i<grps;i++ {
+	for i := 0; i < grps; i++ {
 		go func(id int) {
 			// Endlessly keep working and keep logging.
 			for {
@@ -38,7 +38,7 @@ func main() {
 				logger.Write(fmt.Sprintf("%d: logging data", id))
 			}
 		}(i)
- 	}
+	}
 
 	// To be able to capture the simulated disk blocking, we want
 	// to be able to capture the interrupts.

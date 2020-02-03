@@ -10,7 +10,7 @@ func TestDownload(t *testing.T) {
 	statusCode := 200
 	t.Log("Given testing to see the internet connectivity.")
 	{
-		t.Logf("\t Test 0: \t When checking %q for status code %d", url , statusCode)
+		t.Logf("\t Test 0: \t When checking %q for status code %d", url, statusCode)
 		{
 			resp, err := http.Get(url)
 			if err != nil {
@@ -19,10 +19,10 @@ func TestDownload(t *testing.T) {
 			t.Log("\t\t\t Should be to make the http call")
 			defer resp.Body.Close()
 
-			if(resp.StatusCode == statusCode) {
-				t.Logf("\t\t\t Should receive %d as status code",statusCode)
+			if resp.StatusCode == statusCode {
+				t.Logf("\t\t\t Should receive %d as status code", statusCode)
 			} else {
-				t.Errorf("\t\t\t Should receive %d error code but got %d",statusCode,resp.StatusCode)
+				t.Errorf("\t\t\t Should receive %d error code but got %d", statusCode, resp.StatusCode)
 			}
 		}
 	}

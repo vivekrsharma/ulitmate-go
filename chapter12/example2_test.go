@@ -8,7 +8,7 @@ import (
 func TestDownloadTable(t *testing.T) {
 
 	tests := []struct {
-		url string
+		url        string
 		statusCode int
 	}{{
 		"https://www.google.com/search?q=sachin",
@@ -34,7 +34,7 @@ func TestDownloadTable(t *testing.T) {
 				defer resp.Body.Close()
 
 				if resp.StatusCode == tt.statusCode {
-					t.Logf("\t\t\t Should receive %d as status code",tt.statusCode)
+					t.Logf("\t\t\t Should receive %d as status code", tt.statusCode)
 				} else {
 					t.Errorf("\t\t\t Should receive %d error code but got %d", tt.statusCode, resp.StatusCode)
 				}
