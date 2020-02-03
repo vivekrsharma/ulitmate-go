@@ -5,6 +5,9 @@ import (
 	"testing"
 )
 
+
+// go test -run none -bench . -benchtime 3s -benchmem
+// Dont guess - optimize for readability, simplicity, correctness, integrity. Analyse performance only after you're done.
 var gb string
 func BenchmarkSprint(b *testing.B) {
 	var s string
